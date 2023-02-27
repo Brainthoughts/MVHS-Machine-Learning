@@ -8,5 +8,5 @@ pip install -r requirements.txt
 ```
 To fix virtualenv not loading when you open a new (windows) terminal window
 ```shell
-Set-ExectionPolicy Unrestricted -Scope CurrentUser
+Set-ExecutionPolicy Unrestricted -Scope CurrentUser
 ```
