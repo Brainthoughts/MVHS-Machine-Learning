@@ -1,5 +1,9 @@
-from .state import State
-from .symbol import Symbol
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .state import State
+    from .symbol import Symbol
 
 
 class Player:
@@ -7,4 +11,9 @@ class Player:
         self.symbol = symbol
 
     def play(self, state: State):
+        pass
+
+    def win(self):
+        print(f'Player {self.symbol} wins!')
+    def choose_action(self):
         pass

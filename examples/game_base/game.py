@@ -1,5 +1,9 @@
-from .player import Player
-from .state import State
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .player import Player
+    from .state import State
 
 
 class Game:
@@ -14,11 +18,11 @@ class Game:
             if self.is_game_over():
                 self.game_over()
 
-    def winner(self) -> int | None:
+    def winner(self) -> Player | None:
         raise NotImplementedError
 
     def is_game_over(self) -> bool:
         return self.winner() is not None or sum(1 for _ in self.state.get_available_positions()) == 0
 
     def game_over(self):
-        pass
+        self.winner().win()

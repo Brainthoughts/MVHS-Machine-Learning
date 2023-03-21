@@ -1,19 +1,13 @@
-from ..game_base import BaseGame, BasePlayer
-from .state import State
+from ..game_base import BaseGame, BasePlayer, BaseState
+
 
 class TicTacToe(BaseGame):
-    def __init__(self, players: list[BasePlayer], state: State, win_consecutive: int):
+    def __init__(self, players: list[BasePlayer], state: BaseState, win_consecutive: int):
         super().__init__(players, state)
         self.win_consecutive: int = win_consecutive
 
     def winner(self) -> BasePlayer | None:
-        # todo: make this work
-        winner: BasePlayer | None = None
-        self.check_rows()
-        self.check_columns()
-        self.check_diagonal_up()
-        self.check_diagonal_down()
-        return winner
+        pass
 
     def check_rows(self):
         pass
@@ -25,4 +19,7 @@ class TicTacToe(BaseGame):
         pass
 
     def check_diagonal_down(self):
+        pass
+
+    def game_over(self):
         pass
