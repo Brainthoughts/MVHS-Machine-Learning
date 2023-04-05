@@ -1,5 +1,7 @@
-from ..game_base import BaseSymbol
+from __future__ import annotations
+
+from examples.game_base import Symbol
 
 
-class Symbol(BaseSymbol):
+class TicTacToeSymbol(Symbol):
     pass

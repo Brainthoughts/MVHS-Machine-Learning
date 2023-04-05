@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING
+
+from typing import TYPE_CHECKING, Counter, Any
 
 if TYPE_CHECKING:
     from .state import State
@@ -9,11 +10,13 @@ if TYPE_CHECKING:
 class Player:
     def __init__(self, symbol: Symbol):
         self.symbol = symbol
+        symbol.owner = self
 
-    def play(self, state: State):
-        pass
+    def move(self, state: State) -> None:
+        raise NotImplementedError
 
-    def win(self):
-        print(f'Player {self.symbol} wins!')
-    def choose_action(self):
-        pass
+    def finish_game(self, board: State, evaluation: Counter[Player], winner: Player | None) -> None:
+        raise NotImplementedError
+
+    def choose_action(self) -> tuple[Any]:
+        raise NotImplementedError

@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -7,8 +8,8 @@ if TYPE_CHECKING:
 
 class Symbol:
     def __init__(self, text: str):
-        self.text = text
-        self.owner = None
+        self.text: str = text
+        self.owner: Player | None = None
 
     def __str__(self) -> str:
         return self.text

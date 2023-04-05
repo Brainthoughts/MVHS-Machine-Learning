@@ -1,5 +1,6 @@
-from .game import Game as BaseGame
-from .player import Player as BasePlayer
-from .state import State as BaseState
-from .symbol import Symbol as BaseSymbol
+from .game import Game
+from .player import Player
+from .state import State
+from .symbol import Symbol
 
+__all__ = ['Game', 'Player', 'State', 'Symbol']

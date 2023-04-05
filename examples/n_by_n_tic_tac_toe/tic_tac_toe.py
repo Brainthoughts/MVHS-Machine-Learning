@@ -1,6 +1,8 @@
-import sys
-import numpy as np
 import pickle
+import sys
+
+import numpy as np
+
 """
 Set BOARD_SIZE and WIN_CONSECUTIVE to same values as they were trained with.
 Set MAX_DEPTH to desired value. The larger it is the better the computer will play, BUT the time it takes 
@@ -15,6 +17,7 @@ WIN_CONSECUTIVE = 4
 MAX_DEPTH = 3
 BIAS_MULTIPLIER = .01
 player, opponent = 1, -1
+
 
 class State:
     def __init__(self, p1, p2, board=np.zeros((BOARD_SIZE, BOARD_SIZE))):
@@ -401,7 +404,7 @@ def minimax(state: State, depth, alpha, beta, maximizing_player):
     if depth == 0 or winner != 0:
         if winner is not None and winner != 0:
             state.should_minimax = True
-            bias += winner*BIAS_MULTIPLIER
+            bias += winner * BIAS_MULTIPLIER
         return winner, bias
 
     if maximizing_player:
@@ -453,7 +456,7 @@ if __name__ == "__main__":
         [0, 1, 1, -1, -1]
     ])
 
-    # st = State(p1, p2, board=game_board)  # uncomment this to start with a custom board set above
+    # st = TicTacToeState(p1, p2, board=game_board)  # uncomment this to start with a custom board set above
     st = State(p1, p2)  # comment this out if using custom board
     print('Thinking')
     st.play2()
