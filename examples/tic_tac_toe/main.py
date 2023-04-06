@@ -4,9 +4,9 @@ from examples.tic_tac_toe import HumanPlayer, TicTacToeSymbol, TicTacToeState, T
 
 BOARD_SIZE = 3
 N_TO_WIN = 3
-if __name__ == '__main__':
-    player1: HumanPlayer = HumanPlayer(TicTacToeSymbol('x'))
-    player2: HumanPlayer = HumanPlayer(TicTacToeSymbol('o'))
+if __name__ == "__main__":
+    player1: HumanPlayer = HumanPlayer(TicTacToeSymbol("x"))
+    player2: HumanPlayer = HumanPlayer(TicTacToeSymbol("o"))
 
     BOARD = np.empty((BOARD_SIZE, BOARD_SIZE), dtype=TicTacToeSymbol)
     start_state: TicTacToeState = TicTacToeState(BOARD)

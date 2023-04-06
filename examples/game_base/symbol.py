@@ -7,7 +7,7 @@ if TYPE_CHECKING:
 
 
 class Symbol:
-    def __init__(self, text: str):
+    def __init__(self, text: str) -> None:
         self.text: str = text
         self.owner: Player | None = None
 

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Counter
+from typing import TYPE_CHECKING
+from collections import Counter
 
 if TYPE_CHECKING:
     from .player import Player
@@ -8,13 +9,13 @@ if TYPE_CHECKING:
 
 
 class Game:
-    def __init__(self, players: list[Player], state: State):
+    def __init__(self, players: list[Player], state: State) -> None:
         self.state: State = state
         self.state.set_game(self)
         self.players: list[Player] = players
 
     def play(self, rounds: int = 1) -> None:
-        for round_num in range(rounds):
+        for _round_num in range(rounds):
             while not self.is_game_over():
                 self.state.get_current_player(self.players).move(self.state)
                 self.state.change_turn(self.players)

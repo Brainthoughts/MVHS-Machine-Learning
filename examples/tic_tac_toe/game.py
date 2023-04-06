@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 from collections import Counter
-from typing import TYPE_CHECKING, Iterable
+from typing import TYPE_CHECKING
+from collections.abc import Iterable
 
 import numpy as np
 
@@ -14,7 +15,7 @@ if TYPE_CHECKING:
 
 
 class TicTacToe(Game):
-    def __init__(self, players: list[Player], state: TicTacToeState, win_consecutive: int):
+    def __init__(self, players: list[Player], state: TicTacToeState, win_consecutive: int) -> None:
         super().__init__(players, state)
         self.win_consecutive: int = win_consecutive
 

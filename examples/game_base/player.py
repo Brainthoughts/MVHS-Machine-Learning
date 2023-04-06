@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Counter, Any
+from typing import TYPE_CHECKING, Any
+from collections import Counter
 
 if TYPE_CHECKING:
     from .state import State
@@ -8,7 +9,7 @@ if TYPE_CHECKING:
 
 
 class Player:
-    def __init__(self, symbol: Symbol):
+    def __init__(self, symbol: Symbol) -> None:
         self.symbol = symbol
         symbol.owner = self
 

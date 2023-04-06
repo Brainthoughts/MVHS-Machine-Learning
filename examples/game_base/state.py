@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 from copy import deepcopy
-from typing import Generator, TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any
+from collections.abc import Generator
 
 import numpy as np
 from numpy.typing import NDArray
@@ -13,8 +14,8 @@ if TYPE_CHECKING:
 
 
 class State:
-    def __init__(self, board: NDArray):
-        self.board: NDArray = board
+    def __init__(self, board: NDArray[np.object_]) -> None:
+        self.board: NDArray[np.object_] = board
         self.player_turn: int = 0
         self.game: Game | None = None
         self.original_state = self.__getstate__()
@@ -53,11 +54,11 @@ class State:
 
     def print_board(self) -> None:
         for i in range(self.board.shape[0]):
-            print('-' * (4 * self.board.shape[1] + 1))
-            out = '| '
+            print("-" * (4 * self.board.shape[1] + 1))
+            out = "| "
             for j in range(self.board.shape[1]):
-                token: Symbol | str | None = self.board[i, j] or ' '
-                out += str(token) + ' | '
+                token: Symbol | str | None = self.board[i, j] or " "
+                out += str(token) + " | "
             print(out)
 
-        print('-' * (4 * self.board.shape[1] + 1))
+        print("-" * (4 * self.board.shape[1] + 1))
