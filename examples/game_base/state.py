@@ -1,8 +1,8 @@
 from __future__ import annotations
 
+from collections.abc import Generator
 from copy import deepcopy
 from typing import TYPE_CHECKING, Any
-from collections.abc import Generator
 
 import numpy as np
 from numpy.typing import NDArray
@@ -33,7 +33,7 @@ class State:
     def get_hash(self) -> str:
         return self.__repr__()
 
-    def update(self, position: tuple[Any], symbol: Symbol) -> None:
+    def update(self, position: tuple[Any, ...], symbol: Symbol) -> None:
         self.board[position] = symbol
 
     def reset(self) -> None:

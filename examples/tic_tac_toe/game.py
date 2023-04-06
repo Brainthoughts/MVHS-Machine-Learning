@@ -1,21 +1,16 @@
 from __future__ import annotations
 
 from collections import Counter
-from typing import TYPE_CHECKING
 from collections.abc import Iterable
+from typing import cast
 
 import numpy as np
 
-from examples.game_base import Game
-
-if TYPE_CHECKING:
-    from .player import Player
-    from .state import TicTacToeState
-    from .symbol import TicTacToeSymbol
+from examples.game_base import Game, Player, State, Symbol
 
 
 class TicTacToe(Game):
-    def __init__(self, players: list[Player], state: TicTacToeState, win_consecutive: int) -> None:
+    def __init__(self, players: list[Player], state: State, win_consecutive: int) -> None:
         super().__init__(players, state)
         self.win_consecutive: int = win_consecutive
 
@@ -31,8 +26,7 @@ class TicTacToe(Game):
                                                       self.state.board.shape[0] - self.win_consecutive + 1)])
         return evaluation
 
-    def _update_counter(self, spot: TicTacToeSymbol, consecutive: int, last_value: TicTacToeSymbol | None) -> tuple[
-        int, TicTacToeSymbol]:
+    def _update_counter(self, spot: Symbol, consecutive: int, last_value: Symbol | None) -> tuple[int, Symbol]:
         if spot and spot is last_value:
             consecutive += 1
         elif spot:
@@ -41,15 +35,15 @@ class TicTacToe(Game):
             consecutive = 0
         return consecutive, spot
 
-    def _evaluate_selection(self, selection: Iterable[Iterable[TicTacToeSymbol]]) -> Counter[Player]:
+    def _evaluate_selection(self, selection: Iterable[Iterable[Symbol]]) -> Counter[Player]:
         consecutive: int = 0
-        last_value: TicTacToeSymbol | None = None
+        last_value: Symbol | None = None
         evaluation: Counter[Player] = Counter()
         for row in selection:
             for spot in row:
                 consecutive, last_value = self._update_counter(spot, consecutive, last_value)
                 if consecutive >= self.win_consecutive:
-                    evaluation[spot.owner] += 1
+                    evaluation[cast(Player, spot.owner)] += 1  # cast needed for type checking
             consecutive = 0
         return evaluation
 

@@ -12,4 +12,4 @@ if __name__ == "__main__":
     start_state: TicTacToeState = TicTacToeState(BOARD)
     game: TicTacToe = TicTacToe([player1, player2], start_state, N_TO_WIN)
 
-    game.play(2)
+    game.play()

@@ -1,11 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
-from examples.game_base import State
-
-if TYPE_CHECKING:
-    from .symbol import TicTacToeSymbol
+from examples.game_base import State, Symbol
 
 
 class TicTacToeState(State):
@@ -14,7 +9,7 @@ class TicTacToeState(State):
             print("-" * (4 * self.board.shape[1] + 1))
             out = "| "
             for j in range(self.board.shape[1]):
-                token: TicTacToeSymbol | str | None = self.board[i, j] or " "
+                token: Symbol | str | None = self.board[i, j] or " "
                 out += str(token) + " | "
             print(out)
 

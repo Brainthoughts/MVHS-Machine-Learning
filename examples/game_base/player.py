@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
 from collections import Counter
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from .state import State
