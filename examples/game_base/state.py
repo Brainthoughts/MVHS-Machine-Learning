@@ -31,9 +31,9 @@ class State:
         self.game = game
 
     def get_hash(self) -> str:
-        return self.__repr__()
+        raise NotImplementedError
 
-    def update(self, position: tuple[Any, ...], symbol: Symbol) -> None:
+    def update(self, position: tuple[Any, ...], symbol: Symbol | None) -> None:
         self.board[position] = symbol
 
     def reset(self) -> None:

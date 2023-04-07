@@ -353,19 +353,19 @@ if __name__ == "__main__":
     p1 = Player("p1", exp_rate=0.3)
     p2 = Player("p2", exp_rate=0.3)
     print('Loading Policy')
-    p1.loadPolicy("policy_p1")
-    p2.loadPolicy("policy_p2")
+    # p1.loadPolicy("policy_p1")
+    # p2.loadPolicy("policy_p2")
 
     st = State(p1, p2)
-
-    try:
-        print("training...")
-        while True:
-            st.play(10000)  # give number of games or empty for maxint
-            p1.savePolicy()
-            p2.savePolicy()
-    except KeyboardInterrupt:
-        p1.savePolicy()
-        p2.savePolicy()
-        print("saved")
-        sys.exit(0)
+    st.play(1000)
+    # try:
+    #     print("training...")
+    #     while True:
+    #         st.play(10000)  # give number of games or empty for maxint
+    #         p1.savePolicy()
+    #         p2.savePolicy()
+    # except KeyboardInterrupt:
+    #     p1.savePolicy()
+    #     p2.savePolicy()
+    #     print("saved")
+    #     sys.exit(0)
