@@ -68,10 +68,10 @@ nbconvert==7.3.1
 nbformat==5.8.0
 nest-asyncio==1.5.6
 notebook==6.5.4
-notebook_shim==0.2.2
-numpy==1.24.2
+notebook_shim==0.2.3
+numpy==1.24.3
 packaging==23.1
-pandas==2.0.0
+pandas==2.0.1
 pandocfilters==1.5.0
 parso==0.8.3
 pathspec==0.11.1
@@ -88,12 +88,12 @@ ptyprocess==0.7.0
 pure-eval==0.2.2
 pycparser==2.21
 pyface==8.0.0
-Pygments==2.15.0
+Pygments==2.15.1
 pyparsing==3.0.9
 pyproject_hooks==1.0.0
 PyQt5==5.15.9
 PyQt5-Qt5==5.15.2
-PyQt5-sip==12.12.0
+PyQt5-sip==12.12.1
 pyrsistent==0.19.3
 python-dateutil==2.8.2
 python-json-logger==2.0.7
@@ -105,7 +105,7 @@ QtPy==2.3.1
 requests==2.28.2
 rfc3339-validator==0.1.4
 rfc3986-validator==0.1.1
-ruff==0.0.261
+ruff==0.0.262
 scikit-learn==1.2.2
 scipy==1.10.1
 Send2Trash==1.8.0
@@ -118,7 +118,7 @@ terminaltables==3.1.10
 threadpoolctl==3.1.0
 tinycss2==1.2.1
 tomli==2.0.1
-tornado==6.3
+tornado==6.3.1
 traitlets==5.9.0
 traits==6.4.1
 traitsui==7.4.3
@@ -132,6 +132,6 @@ webcolors==1.13
 webencodings==0.5.1
 websocket-client==1.5.1
 widgetsnbextension==4.0.7
-yarl==1.8.2
+yarl==1.9.1
 torch~=2.0.0
 torchvision~=0.15.1
