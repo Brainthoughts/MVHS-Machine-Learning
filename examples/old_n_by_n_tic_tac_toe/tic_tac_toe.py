@@ -449,14 +449,14 @@ if __name__ == "__main__":
     p2 = HumanPlayer("human")
 
     game_board = np.array([  # start with a custom board
-        [1, -1, 1, 1, -1],
-        [1, 1, -1, -1, 1],
-        [1, -1, -1, 1, 0],
-        [-1, 1, -1, -1, 0],
-        [0, 1, 1, -1, -1]
+        [-1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0]
     ])
 
-    # st = TicTacToeState(p1, p2, board=game_board)  # uncomment this to start with a custom board set above
-    st = State(p1, p2)  # comment this out if using custom board
+    st = State(p1, p2, board=game_board)  # uncomment this to start with a custom board set above
+    # st = State(p1, p2)  # comment this out if using custom board
     print('Thinking')
     st.play2()
