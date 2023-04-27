@@ -16,17 +16,18 @@ class TicTacToe(Game):
 
     def evaluate_state(self) -> Counter[Player]:
         evaluation: Counter[Player] = Counter()
-        evaluation += self._evaluate_selection(self.state.board)
-        evaluation += self._evaluate_selection(self.state.board.T)
-        evaluation += self._evaluate_selection([np.diag(self.state.board, k=offset) for offset in
-                                                range(-(self.state.board.shape[0] - self.win_consecutive),
-                                                      self.state.board.shape[0] - self.win_consecutive + 1)])
-        evaluation += self._evaluate_selection([np.diag(np.fliplr(self.state.board), k=offset) for offset in
-                                                range(-(self.state.board.shape[0] - self.win_consecutive),
-                                                      self.state.board.shape[0] - self.win_consecutive + 1)])
+        self._evaluate_selection(self.state.board, evaluation)
+        self._evaluate_selection(self.state.board.T, evaluation)
+        self._evaluate_selection([np.diag(self.state.board, k=offset) for offset in
+                                  range(-(self.state.board.shape[0] - self.win_consecutive),
+                                        self.state.board.shape[0] - self.win_consecutive + 1)], evaluation)
+        self._evaluate_selection([np.diag(np.fliplr(self.state.board), k=offset) for offset in
+                                  range(-(self.state.board.shape[0] - self.win_consecutive),
+                                        self.state.board.shape[0] - self.win_consecutive + 1)], evaluation)
         return evaluation
 
-    def _update_counter(self, spot: Symbol, consecutive: int, last_value: Symbol | None) -> tuple[int, Symbol]:
+    @staticmethod
+    def _update_counter(spot: Symbol, consecutive: int, last_value: Symbol | None) -> tuple[int, Symbol]:
         if spot and spot is last_value:
             consecutive += 1
         elif spot:
@@ -35,17 +36,15 @@ class TicTacToe(Game):
             consecutive = 0
         return consecutive, spot
 
-    def _evaluate_selection(self, selection: Iterable[Iterable[Symbol]]) -> Counter[Player]:
+    def _evaluate_selection(self, selection: Iterable[Iterable[Symbol]], evaluation: Counter[Player]) -> None:
         consecutive: int = 0
         last_value: Symbol | None = None
-        evaluation: Counter[Player] = Counter()
         for row in selection:
             for spot in row:
                 consecutive, last_value = self._update_counter(spot, consecutive, last_value)
                 if consecutive >= self.win_consecutive:
                     evaluation[cast(Player, spot.owner)] += 1  # cast needed for type checking
             consecutive = 0
-        return evaluation
 
     def winner(self) -> Player | None:
         state_eval: Counter[Player] = self.evaluate_state()

@@ -11,7 +11,8 @@ class HumanPlayer(Player):
         action: tuple[int, int] = self.chose_action()
         state.update(action, self.symbol)
 
-    def chose_action(self) -> tuple[int, int]:
+    @staticmethod
+    def chose_action() -> tuple[int, int]:
         choice: tuple[int, ...] = tuple(map(int, input("Coordinate like row, col: ").replace(" ", "").split(",")))
         return choice[0], choice[1]
 
