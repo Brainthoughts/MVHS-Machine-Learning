@@ -11,7 +11,6 @@ from torch.utils.data import DataLoader
 from examples.neural_networks.tf_datasets import PointClusterDataset, PointCircleDataset, PointCornerDataset, PointSpiralDataset
 
 
-# Define the neural network class
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
@@ -28,7 +27,7 @@ class Net(nn.Module):
 
 # Create a dataloader for the dataset
 batch_size = 64
-dataset = PointCircleDataset(noise=1)
+dataset = PointCircleDataset(noise=1)  # PointCircleDataset(noise=1) # PointSpiralDataset(noise=0) # PointCornerDataset(noise=1) # PointClusterDataset(noise=1)
 dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
 # Instantiate the neural network
@@ -58,11 +57,11 @@ def visualize_decision_boundary(model, X, Y, point_spacing = .5, show_training_d
 
     # Plot the decision boundary
     if interpolate:
-        plt.contourf(xx, yy, zz, cmap=color_map, alpha=0.8)
+        plt.contourf(xx, yy, zz, cmap=color_map, alpha=0.8)  # plot a smooth-ish filled contour
     else:
-        plt.scatter(xx, yy, c=zz, cmap=color_map)
+        plt.scatter(xx, yy, c=zz, cmap=color_map)  # scatter plot of tested points
     if show_training_data:
-        plt.scatter(X[Y == 0][:, 0], X[Y == 0][:, 1], c=color_map(0.0), marker='o', label='Class 0')
+        plt.scatter(X[Y == 0][:, 0], X[Y == 0][:, 1], c=color_map(0.0), marker='o', label='Class 0')  # plot the training data
         plt.scatter(X[Y == 1][:, 0], X[Y == 1][:, 1], c=color_map(1.0), marker='s', label='Class 1')
         plt.xlabel('Feature 1')
         plt.ylabel('Feature 2')
@@ -92,7 +91,7 @@ for epoch in range(num_epochs):
         epoch_loss += loss.item()
 
     # Print loss for this epoch
-    print(f'Epoch [{epoch + 1}/{num_epochs}], Loss: {epoch_loss/len(dataloader):.4f}')
+    print(f'Epoch [{epoch + 1}/{num_epochs}], Loss: {epoch_loss/len(dataloader):.4f}')  # see https://fstring.help/cheat/
 
 print('Training finished.')
 
