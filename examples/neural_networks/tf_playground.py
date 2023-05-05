@@ -10,7 +10,18 @@ from torch.utils.data import DataLoader
 
 from examples.neural_networks.tf_datasets import PointClusterDataset, PointCircleDataset, PointCornerDataset, PointSpiralDataset
 
+"""
+Visualize the decision boundary of a neural network
+Call visualize_decision_boundary(model, X, Y) with your model, X and Y for default visualization
+Optional arguments are point_spacing (default .5), show_training_data (default True), interpolate (default True), and color_map (default colormaps['bwr'])
 
+Change var "dataset" to PointCircleDataset(noise=1) or PointSpiralDataset(noise=0) or PointCornerDataset(noise=1) or PointClusterDataset(noise=1)
+noise is a float multiplier for random noise
+
+Change "criterion" to loss function of your choice, CrossEntropyLoss works well
+
+Change "optimizer" to optimizer of your choice, Adam works well but SGD is also good
+"""
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
