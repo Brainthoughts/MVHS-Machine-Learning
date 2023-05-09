@@ -20,4 +20,4 @@ class LineGameState(State):
         print("-" * (4 * self.board.shape[0] + 1))
 
     def get_hash(self) -> str:
-        return np.array2string(self.board.reshape(-1), formatter={"object": lambda s: str(s)})
+        return np.array2string(self.board.reshape(-1), max_line_width=int(np.inf))

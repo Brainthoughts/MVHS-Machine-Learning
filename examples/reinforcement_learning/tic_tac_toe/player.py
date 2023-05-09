@@ -55,4 +55,4 @@ class ReinforcementPlayer(Player):
 
     def load_policy(self, path: Path) -> None:
         with open(path, "rb") as file:
-            self.states_value = pickle.load(file)
+            self.states_value.update(pickle.load(file))

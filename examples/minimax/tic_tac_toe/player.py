@@ -1,5 +1,6 @@
 from collections import Counter
 from random import choice
+from typing import Generator
 
 import numpy as np
 
@@ -104,3 +105,43 @@ class MinimaxBiasPlayer(MinimaxPlayer):
             bias[key] *= self.bias_multiplier
 
         return final_evaluation + bias
+
+
+class MinimaxBiasReinforcementPlayer(MinimaxBiasPlayer):
+    def __init__(self, symbol: Symbol, max_depth: int, bias_multiplier: float = .01,
+                 trained_weights: dict[str, float] = {}) -> None:
+        super().__init__(symbol, max_depth, bias_multiplier)
+        self.trained_weights: dict[str, float] = trained_weights
+
+    def move(self, state: State) -> None:
+        max_eval: float = -np.Infinity
+        action: tuple[int, ...]
+        should_minimax: bool = False
+        for next_position in state.get_available_positions():
+            state.update(next_position, self.symbol)
+            evaluation: Counter[Player] = self.minimax(state, self.max_depth - 1, state.player_turn + 1)
+            if evaluation.total() != 0:
+                should_minimax = True
+            state.update(next_position, None)
+            if max_eval < (new_max_eval := max(max_eval, 2 * evaluation[self] - evaluation.total())):
+                max_eval = new_max_eval
+                action = next_position
+        print(f"Minimax: {max_eval}")
+
+        if not should_minimax:
+            action = self.reinforcement_move(state)
+
+        state.update(action, self.symbol)
+
+    def reinforcement_move(self, state: State) -> tuple[int, ...]:
+        positions: Generator[tuple[int, ...], None, None] = state.get_available_positions()
+        highest_eval: float = -np.inf
+        action: tuple[int, ...]
+        for position in positions:
+            state.update(position, self.symbol)
+            if highest_eval < (new_eval := self.trained_weights[state.get_hash()]):
+                highest_eval = new_eval
+                action = position
+            state.update(position, None)
+        print(f"Reinforcement: {highest_eval}")
+        return action

@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import numpy as np
-from examples.tic_tac_toe import TicTacToeSymbol, TicTacToeState, TicTacToe
+from examples.tic_tac_toe import TicTacToeSymbol, TicTacToeState, TicTacToe, HumanPlayer
 from player import ReinforcementPlayer
 
 BOARD_SIZE = 3
@@ -15,9 +15,10 @@ if __name__ == "__main__":
     p1_policy: Path = Path("./player1")
     p2_policy: Path = Path("./player2")
 
-    print("Loading policies")
-    player1.load_policy(p1_policy)
-    player2.load_policy(p2_policy)
+    # enable this once policies have been created
+    # print("Loading policies")
+    # player1.load_policy(p1_policy)
+    # player2.load_policy(p2_policy)
 
     BOARD = np.empty((BOARD_SIZE, BOARD_SIZE), dtype=TicTacToeSymbol)
     start_state: TicTacToeState = TicTacToeState(BOARD)

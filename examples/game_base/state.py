@@ -39,8 +39,11 @@ class State:
         :param state: A dictionary of the state object
         :return:
         """
+        assert self.game is not None, "Game instance not set"
+        game: Game = self.game
         self.__dict__ = state
         self.original_state = self.__getstate__()
+        self.game = game
 
     def set_game(self, game: Game) -> None:
         """

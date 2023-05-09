@@ -32,6 +32,9 @@ class Symbol:
         """
         return self.text
 
+    def __repr__(self) -> str:
+        return self.text
+
     def assign_owner(self, player: Player) -> None:
         """
         Assigns the symbol to the given player.
