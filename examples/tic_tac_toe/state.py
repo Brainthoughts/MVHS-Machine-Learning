@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import numpy as np
-
 from examples.game_base import State, Symbol
 
 
@@ -18,4 +16,4 @@ class TicTacToeState(State):
         print("-" * (4 * self.board.shape[1] + 1))
 
     def get_hash(self) -> str:
-        return np.array2string(self.board.reshape(-1), max_line_width=int(np.inf))
+        return str(self.board.reshape(-1))
